@@ -1,5 +1,5 @@
 {
-    "name": "mohammad-waleed/keycloak-admin-client",
+    "name": "mustafstarlabs/keycloak-admin-client",
     "description": "Connect to keycloak admin api easily",
     "type": "library",
     "license": "MIT",
@@ -15,8 +15,8 @@
     },
     "authors": [
         {
-            "name": "Mohammad Waleed",
-            "email": "mohammed.barghash99@gmail.com"
+            "name": "Mustafe Hyseni",
+            "email": "mustaf.hyseni@starlabspro.com"
         }
     ]
 }
