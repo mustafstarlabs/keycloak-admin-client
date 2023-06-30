@@ -285,7 +285,7 @@ class KeycloakClient extends GuzzleClient
             'version'  => '1.0',
             'baseUri'  => null,
             'verify'   => true,
-            'token_storage' => null,
+            'token_storage' => new RuntimeTokenStorage(),
         );
 
         $config = self::parseConfig($config, $default);
