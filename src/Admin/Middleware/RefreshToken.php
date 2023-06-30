@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\RejectedPromise;
-use GuzzleHttp\Promise\RejectionException;
 use Keycloak\Admin\TokenStorages\TokenStorage;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -25,21 +24,23 @@ class RefreshToken
 
     public function __invoke(callable $handler)
     {
-        return function (RequestInterface $request, array $options) use ($handler) {
-            $token = $this->tokenStorage->getToken();
+        $tokenStorage = $this->tokenStorage;
 
-            return $this->refreshTokenIfNeeded($token, $options)->then(function (array $cred) use ($request, $handler, $options) {
-                $this->tokenStorage->saveToken($cred);
+        return function (RequestInterface $request, array $options) use ($handler, $tokenStorage) {
+            $token = $tokenStorage->getToken();
+
+            return $this->refreshTokenIfNeeded($token, $options)->then(function (array $cred) use ($request, $handler, $options, $tokenStorage) {
+                $tokenStorage->saveToken($cred);
                 $request = $request->withHeader('Authorization', 'Bearer ' . $cred['access_token']);
                 return $handler($request, $options);
-            })->then(function (ResponseInterface $response) {
+            })->then(function (ResponseInterface $response) use ($tokenStorage) {
                 if ($response->getStatusCode() >= 400) {
-                    $this->tokenStorage->saveToken([]);
+                    $tokenStorage->saveToken([]);
                 }
 
                 return $response;
-            })->otherwise(function ($reason) {
-                $this->tokenStorage->saveToken([]);
+            }, function ($reason) use ($tokenStorage) {
+                $tokenStorage->saveToken([]);
                 throw $reason;
             });
         };
@@ -95,7 +96,7 @@ class RefreshToken
      */
     public function tokenExpired($token) {
         $info = $this->getTokenPayload($token);
-        $exp = $info['exp'] ?? 0;
+        $exp = isset($info['exp']) ? $info['exp'] : 0;
         if (time() < $exp) {
             return false;
         }
@@ -116,9 +117,9 @@ class RefreshToken
             return new RejectedPromise("cannot refresh token when the 'refresh_token' is missing");
         }
 
-        $url = "realms/{$options['realm']}/protocol/openid-connect/token";
-        $clientId = $options["client_id"] ?? "admin-cli";
-        $grantType = $refresh ? "refresh_token" : ($options["grant_type"] ?? "password");
+        $url = "auth/realms/{$options['realm']}/protocol/openid-connect/token";
+        $clientId = isset($options["client_id"]) ? $options["client_id"] : "admin-cli";
+        $grantType = $refresh ? "refresh_token" : (isset($options["grant_type"]) ? $options["grant_type"] : "password");
         $params = [
             'client_id' => $clientId,
             'grant_type' => $grantType,

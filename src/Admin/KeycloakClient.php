@@ -10,7 +10,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use Keycloak\Admin\Classes\FullBodyLocation;
-use Keycloak\Admin\Classes\FullTextLocation;
 use Keycloak\Admin\TokenStorages\RuntimeTokenStorage;
 
 /**
@@ -163,6 +162,7 @@ use Keycloak\Admin\TokenStorages\RuntimeTokenStorage;
  * @method array getClientScopeProtocolMappersByProtocolName(array $args = array()) { @command Keycloak getClientScopeProtocolMappersByProtocolName }
  * @method array createClientProtocolMappers(array $args = array()) { @command Keycloak createClientProtocolMappers }
  * @method array createClientProtocolMapper(array $args = array()) { @command Keycloak createClientProtocolMapper }
+ * @method array getClientProtocolMappers(array $args = array()) { @command Keycloak getClientProtocolMappers }
  * @method array getClientProtocolMapperById(array $args = array()) { @command Keycloak getClientProtocolMapperById }
  * @method array updateClientProtocolMapper(array $args = array()) { @command Keycloak updateClientProtocolMapper }
  * @method array deleteClientProtocolMapper(array $args = array()) { @command Keycloak deleteClientProtocolMapper }
@@ -194,13 +194,6 @@ use Keycloak\Admin\TokenStorages\RuntimeTokenStorage;
  * @method array getEventsConfig(array $args = array()) { @command Keycloak getEventsConfig }
  * @method array updateEventsConfig(array $args = array()) { @command Keycloak updateEventsConfig }
  * @method array getGroupByPath(array $args = array()) { @command Keycloak getGroupByPath }
- * @method array getLocalizationLocales(array $args = array()) { @command Keycloak getLocalizationLocales }
- * @method array getLocalizationTexts(array $args = array()) { @command Keycloak getLocalizationTexts }
- * @method array updateLocalizationTexts(array $args = array()) { @command Keycloak updateLocalizationTexts }
- * @method array deleteLocalizationTexts(array $args = array()) { @command Keycloak deleteLocalizationTexts }
- * @method array getLocalizationText(array $args = array()) { @command Keycloak getLocalizationText }
- * @method array saveLocalizationText(array $args = array()) { @command Keycloak saveLocalizationText }
- * @method array deleteLocalizationText(array $args = array()) { @command Keycloak deleteLocalizationText }
  * @method array logoutAllUsers(array $args = array()) { @command Keycloak logoutAllUsers }
  * @method array partialExportRealm(array $args = array()) { @command Keycloak partialExportRealm }
  * @method array partialImportRealm(array $args = array()) { @command Keycloak partialImportRealm }
@@ -271,56 +264,38 @@ use Keycloak\Admin\TokenStorages\RuntimeTokenStorage;
  * @method array getUserGroups(array $args = array()) { @command Keycloak getUserGroups }
  * @method array getUserGroupsCount(array $args = array()) { @command Keycloak getUserGroupsCount }
  * @method array updateUser(array $args = array()) { @command Keycloak updateUser }
+ * @method array updatePartialUser(array $args = array()) { @command Keycloak updatePartialUser }
  * @method array deleteUser(array $args = array()) { @command Keycloak deleteUser }
  * @method array executeActionsEmail(array $args = array()) { @command Keycloak executeActionsEmail }
  * @method array sendVerifyEmail(array $args = array()) { @command Keycloak sendVerifyEmail }
  * @method array addUserToGroup(array $args = array()) { @command Keycloak addUserToGroup }
  * @method array deleteUserFromGroup(array $args = array()) { @command Keycloak deleteUserFromGroup }
  * @method array resetUserPassword(array $args = array()) { @command Keycloak resetUserPassword }
- * @method array getUserSessions(array $args = array()) { @command Keycloak getUserSessions }
- * @method array getUserCredentials(array $args = array()) { @command Keycloak getUserCredentials }
- * @method array impersonateUser(array $args = array()) { @command Keycloak impersonateUser }
- * @method array logoutUser(array $args = array()) { @command Keycloak logoutUser }
- *
- * @method array getSocialLogins(array $args = array()) { @command Keycloak getSocialLogins }
- * @method array addSocialLogin(array $args = array()) { @command Keycloak addSocialLogin }
- * @method array removeSocialLogin(array $args = array()) { @command Keycloak removeSocialLogin }
- * @method array syncUserStorage(array $args = array()) { @command Keycloak syncUserStorage }
- * @method array getUserConsents(array $args = array()) { @command Keycloak getUserConsents }
  *
  */
 
 class KeycloakClient extends GuzzleClient
 {
-
-    /**
-     * Factory to create new KeycloakClient instance.
-     *
-     * @param array $config
-     *
-     * @return \Keycloak\Admin\KeycloakClient
-     */
     public static function factory($config = array())
     {
         $default = array(
-            'apiVersion'  => '1.0',
             'username' => null,
             'password' => null,
             'realm'    => 'master',
+            'version'  => '1.0',
             'baseUri'  => null,
             'verify'   => true,
-            'token_storage' => new RuntimeTokenStorage(),
+            'token_storage' => null,
         );
 
-        // Create client configuration
         $config = self::parseConfig($config, $default);
 
-        $file = 'keycloak-' . str_replace('.', '_', $config['apiVersion']) . '.php';
+        $file = 'keycloak-' . str_replace('.', '_', $config['version']) . '.php';
 
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());
 
-        $middlewares = isset($config["middlewares"]) && is_array($config["middlewares"]) ? $config["middlewares"] : [];
+        $middlewares = isset($config["middlewares"]) && is_array($config["middlewares"]) ? $config["middlewares"] : array();
         foreach ($middlewares as $middleware) {
             if (is_callable($middleware)) {
                 $stack->push($middleware);
@@ -331,36 +306,31 @@ class KeycloakClient extends GuzzleClient
 
         $config['handler'] = $stack;
 
-        $serviceDescription = include __DIR__ . "/Resources/{$file}";
-        $customOperations = isset($config["custom_operations"]) && is_array($config["custom_operations"]) ? $config["custom_operations"] : [];
+        $serviceDescription = include dirname(__FILE__) . "/Resources/{$file}";
+        $customOperations = isset($config["custom_operations"]) && is_array($config["custom_operations"]) ? $config["custom_operations"] : array();
         foreach ($customOperations as $operationKey => $operation) {
-            // Do not override built-in functionality
-            if (isset($serviceDescription['operations'][$operationKey])) {
-                continue;
+            if (!isset($serviceDescription['operations'][$operationKey])) {
+                $serviceDescription['operations'][$operationKey] = $operation;
             }
-            $serviceDescription['operations'][$operationKey] = $operation;
         }
         $description = new Description($serviceDescription);
 
-        // Create the new Keycloak Client with our Configuration
-        return new static(
+        return new self(
             new Client($config),
             $description,
-            new Serializer($description, [
-                "fullBody" => new FullBodyLocation(),
-                "fullText" => new FullTextLocation(),
-            ]),
+            new Serializer($description, array(
+                "fullBody" => new FullBodyLocation()
+            )),
             function ($response) {
                 $responseBody = $response->getBody()->getContents();
-                return json_decode($responseBody, true) ?? ['content' => $responseBody];
+                return json_decode($responseBody, true) ?: array('content' => $responseBody);
             },
             null,
             $config
         );
     }
 
-
-    public function getCommand($name, array $params = [])
+    public function getCommand($name, array $params = array())
     {
         if (!isset($params['realm'])) {
             $params['realm'] = $this->getRealmName();
@@ -368,83 +338,44 @@ class KeycloakClient extends GuzzleClient
         return parent::getCommand($name, $params);
     }
 
-    /**
-     * Sets the BaseUri used by the Keycloak Client
-     *
-     * @param string $baseUri
-     */
     public function setBaseUri($baseUri)
     {
         $this->setConfig('baseUri', $baseUri);
     }
-    /**
-     * Sets the Realm name used by the Keycloak Client
-     *
-     * @param string $realm
-     */
+
     public function getBaseUri()
     {
         return $this->getConfig('baseUri');
     }
 
-
-    /**
-     * Sets the Realm name used by the Keycloak Client
-     *
-     * @param string $realm
-     */
     public function setRealmName($realm)
     {
         $this->setConfig('realm', $realm);
     }
 
-    /**
-     * Gets the Realm name being used by the Keycloak Client
-     *
-     * @return string|null Value of the realm or NULL
-     */
     public function getRealmName()
     {
         return $this->getConfig('realm');
     }
 
-    /**
-     * Sets the API Version used by the Keycloak Client.
-     * Changing the API Version will attempt to load a new Service Definition for that Version.
-     *
-     * @param string $version
-     */
     public function setVersion($version)
     {
-        $this->setConfig('apiVersion', $version);
+        $this->setConfig('version', $version);
     }
 
-    /**
-     * Gets the Version being used by the Keycloak Client
-     *
-     * @return string|null Value of the Version or NULL
-     */
     public function getVersion()
     {
-        return $this->getConfig('apiVersion');
+        return $this->getConfig('version');
     }
 
-
-    /**
-     * Attempt to parse config and apply defaults
-     *
-     * @param  array  $config
-     * @param  array  $default
-     *
-     * @return array Returns the updated config array
-     */
     protected static function parseConfig($config, $default)
     {
-        array_walk($default, function ($value, $key) use (&$config) {
+        foreach ($default as $key => $value) {
             if (!isset($config[$key])) {
                 $config[$key] = $value;
             }
-        });
+        }
         return $config;
     }
 }
+
