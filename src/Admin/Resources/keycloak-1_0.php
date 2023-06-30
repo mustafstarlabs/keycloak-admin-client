@@ -11,7 +11,7 @@ return array(
         // Attack Detection
 
         'clearAllLoginFailures' => array(
-            'uri' => 'auth/admin/realms/{realm}/attack-detection/brute-force/users',
+            'uri' => 'admin/realms/{realm}/attack-detection/brute-force/users',
             'description' => 'Clear any user login failures for all users This can release temporary disabled users',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -25,7 +25,7 @@ return array(
         ),
 
         'getBruteForceUserStatus' => array(
-            'uri' => 'auth/admin/realms/{realm}/attack-detection/brute-force/users/{userId}',
+            'uri' => 'admin/realms/{realm}/attack-detection/brute-force/users/{userId}',
             'description' => 'Get status of a username in brute force detection',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -45,7 +45,7 @@ return array(
         ),
 
         'clearUserLoginFailures' => array(
-            'uri' => 'auth/admin/realms/{realm}/attack-detection/brute-force/users/{userId}',
+            'uri' => 'admin/realms/{realm}/attack-detection/brute-force/users/{userId}',
             'description' => 'Clear any user login failures for the user This can release temporary disabled user',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -67,7 +67,7 @@ return array(
         // Authentication Management
 
         'getAuthenticatorProviders' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/authenticator-providers',
+            'uri' => 'admin/realms/{realm}/authentication/authenticator-providers',
             'description' => 'Get authenticator providers Returns a list of authenticator providers.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -81,7 +81,7 @@ return array(
         ),
 
         'getClientAuthenticatorProviders' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/client-authenticator-providers',
+            'uri' => 'admin/realms/{realm}/authentication/client-authenticator-providers',
             'description' => 'Get client authenticator providers Returns a list of client authenticator providers.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -95,7 +95,7 @@ return array(
         ),
 
         'getAuthenticatorConfigInfo' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/config-description/{providerId}',
+            'uri' => 'admin/realms/{realm}/authentication/config-description/{providerId}',
             'description' => 'Get authenticator provider’s configuration description',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -115,7 +115,7 @@ return array(
         ),
 
         'getAuthenticatorConfig' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/config/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/config/{id}',
             'description' => 'Get authenticator configuration',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -135,7 +135,7 @@ return array(
         ),
 
         'updateAuthenticatorConfig' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/config/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/config/{id}',
             'description' => 'Update authenticator configuration',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -155,7 +155,7 @@ return array(
         ),
 
         'deleteAuthenticatorConfig' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/config/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/config/{id}',
             'description' => 'Delete authenticator configuration',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -175,7 +175,7 @@ return array(
         ),
 
         'createAuthenticationExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions',
+            'uri' => 'admin/realms/{realm}/authentication/executions',
             'description' => 'Add new authentication execution',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -189,7 +189,7 @@ return array(
         ),
 
         'getAuthenticationExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions/{executionId}',
+            'uri' => 'admin/realms/{realm}/authentication/executions/{executionId}',
             'description' => 'Get Single Execution',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -209,7 +209,7 @@ return array(
         ),
 
         'deleteAuthenticationExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions/{executionId}',
+            'uri' => 'admin/realms/{realm}/authentication/executions/{executionId}',
             'description' => 'Delete execution',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -229,7 +229,7 @@ return array(
         ),
 
         'updateAuthenticationExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions/{executionId}',
+            'uri' => 'admin/realms/{realm}/authentication/executions/{executionId}',
             'description' => 'Update execution with new configuration',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -249,7 +249,7 @@ return array(
         ),
 
         'lowerAuthenticationExecutionPriority' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions/{executionId}/lower-priority',
+            'uri' => 'admin/realms/{realm}/authentication/executions/{executionId}/lower-priority',
             'description' => 'Lower execution’s priority',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -269,7 +269,7 @@ return array(
         ),
 
         'raiseAuthenticationExecutionPriority' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/executions/{executionId}/raise-priority',
+            'uri' => 'admin/realms/{realm}/authentication/executions/{executionId}/raise-priority',
             'description' => 'Raise execution’s priority',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -289,7 +289,7 @@ return array(
         ),
 
         'createAuthenticationFlow' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows',
+            'uri' => 'admin/realms/{realm}/authentication/flows',
             'description' => 'Create a new authentication flow',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -303,7 +303,7 @@ return array(
         ),
 
         'getAuthenticationFlows' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows',
+            'uri' => 'admin/realms/{realm}/authentication/flows',
             'description' => 'Get authentication flows Returns a list of authentication flows.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -317,7 +317,7 @@ return array(
         ),
 
         'copyAuthenticationFlow' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{flowAlias}/copy',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{flowAlias}/copy',
             'description' => "Copy existing authentication flow under a new name The new name is given as 'newName' attribute of the passed JSON object",
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -343,7 +343,7 @@ return array(
         ),
 
         'getAuthenticationFlowExecutions' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{flowAlias}/executions',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{flowAlias}/executions',
             'description' => 'Get authentication executions for a flow',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -363,7 +363,7 @@ return array(
         ),
 
         'updateAuthenticationFlowExecutions' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{flowAlias}/executions',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{flowAlias}/executions',
             'description' => 'Update authentication executions for a flow',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -383,7 +383,7 @@ return array(
         ),
 
         'createAuthenticationFlowExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{flowAlias}/executions/execution',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{flowAlias}/executions/execution',
             'description' => 'Add new authentication execution to a flow',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -410,7 +410,7 @@ return array(
 
         //I really don't know how this works, but it works
         'addAuthenticationFlowExecution' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{flowAlias}/executions/flow',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{flowAlias}/executions/flow',
             'description' => 'Add new flow with new execution to existing flow',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -454,7 +454,7 @@ return array(
         ),
 
         'getAuthenticationFlow' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{id}',
             'description' => 'Get authentication flow for id',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -475,7 +475,7 @@ return array(
 
         // Keycloak gives an error when calling this api even when it's working fine
         'updateAuthenticationFlow' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{id}',
             'description' => 'Update authentication flow for id',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -495,7 +495,7 @@ return array(
         ),
 
         'deleteAuthenticationFlow' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/flows/{id}',
+            'uri' => 'admin/realms/{realm}/authentication/flows/{id}',
             'description' => 'Delete an authentication flow',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -515,7 +515,7 @@ return array(
         ),
 
         'getFormActionProviders' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/form-action-providers',
+            'uri' => 'admin/realms/{realm}/authentication/form-action-providers',
             'description' => 'Get form action providers Returns a list of form action providers.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -529,7 +529,7 @@ return array(
         ),
 
         'getFormProviders' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/form-providers',
+            'uri' => 'admin/realms/{realm}/authentication/form-providers',
             'description' => 'Get form providers Returns a list of form providers.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -543,7 +543,7 @@ return array(
         ),
 
         'getClientsConfigDescriptions' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/per-client-config-description',
+            'uri' => 'admin/realms/{realm}/authentication/per-client-config-description',
             'description' => 'Get configuration descriptions for all clients',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -558,7 +558,7 @@ return array(
 
         //If used incorrectly can break login, ok it can break even other apis be careful when using it
         'createRequiredAction' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/register-required-action',
+            'uri' => 'admin/realms/{realm}/authentication/register-required-action',
             'description' => 'Register a new required actions',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -584,7 +584,7 @@ return array(
         ),
 
         'getRequiredActions' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions',
             'description' => 'Get required actions Returns a list of required actions.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -598,7 +598,7 @@ return array(
         ),
 
         'getAliasRequiredAction' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions/{alias}',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions/{alias}',
             'description' => 'Get required action for alias',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -618,7 +618,7 @@ return array(
         ),
 
         'updateRequiredAction' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions/{alias}',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions/{alias}',
             'description' => 'Update required action',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -638,7 +638,7 @@ return array(
         ),
 
         'deleteRequiredAction' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions/{alias}',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions/{alias}',
             'description' => 'Delete required action',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -658,7 +658,7 @@ return array(
         ),
 
         'lowerRequiredActionPriority' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions/{alias}/lower-priority',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions/{alias}/lower-priority',
             'description' => 'Lower required action’s priority',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -678,7 +678,7 @@ return array(
         ),
 
         'raiseRequiredActionPriority' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/required-actions/{alias}/raise-priority',
+            'uri' => 'admin/realms/{realm}/authentication/required-actions/{alias}/raise-priority',
             'description' => 'Raise required action’s priority',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -698,7 +698,7 @@ return array(
         ),
 
         'getUnregisteredRequiredActions' => array(
-            'uri' => 'auth/admin/realms/{realm}/authentication/unregistered-required-actions',
+            'uri' => 'admin/realms/{realm}/authentication/unregistered-required-actions',
             'description' => 'Get unregistered required actions Returns a list of unregistered required actions.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -714,7 +714,7 @@ return array(
         // Client Attribute Certificate
 
         'getClientKeyInfo' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}',
             'description' => 'Get key info',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -740,7 +740,7 @@ return array(
         ),
 
         'getClientKeyStore' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}/download',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}/download',
             'description' => 'Get a keystore file for the client, containing private key and public certificate',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -766,7 +766,7 @@ return array(
         ),
 
         'generateClientCertificate' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}/generate',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}/generate',
             'description' => 'Generate a new certificate with new key pair',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -792,7 +792,7 @@ return array(
         ),
 
         'generateDownloadClientCertificate' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}/generate-and-download',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}/generate-and-download',
             'description' => 'Generate a new keypair and certificate, and get the private key file Generates a keypair and certificate and serves the private key in a specified keystore format.',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -819,7 +819,7 @@ return array(
 
         // need to tell Keycloak team about this, it's not mentioned in the documentation
         'uploadClientCertificateAndPrivateKey' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}/upload',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}/upload',
             'description' => 'Upload certificate and eventually private key',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -875,7 +875,7 @@ return array(
 
         // need to tell Keycloak team about this, it's not mentioned in the documentation
         'uploadClientCertificateOnly' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients/{id}/certificates/{attr}/upload-certificate',
+            'uri' => 'admin/realms/{realm}/clients/{id}/certificates/{attr}/upload-certificate',
             'description' => 'Upload only certificate, not private key',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -932,7 +932,7 @@ return array(
         // Client Initial Access
 
         'createClientInitialAccessToken' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients-initial-access',
+            'uri' => 'admin/realms/{realm}/clients-initial-access',
             'description' => 'Create a new initial access token.',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -946,7 +946,7 @@ return array(
         ),
 
         'getClientInitialAccessTokens' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients-initial-access',
+            'uri' => 'admin/realms/{realm}/clients-initial-access',
             'description' => 'Get client initial access tokens.',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -960,7 +960,7 @@ return array(
         ),
 
         'deleteClientInitialAccessToken' => array(
-            'uri' => 'auth/admin/realms/{realm}/clients-initial-access/{id}',
+            'uri' => 'admin/realms/{realm}/clients-initial-access/{id}',
             'description' => 'Delete client initial access token.',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -982,7 +982,7 @@ return array(
         // Client Registration Policy
 
         'getClientRegistrationPolicyProviders' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-registration-policy/providers',
+            'uri' => 'admin/realms/{realm}/client-registration-policy/providers',
             'description' => 'Base path for retrieve providers with the configProperties properly filled',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -998,7 +998,7 @@ return array(
         // Client Role Mappings
 
         'addGroupClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
             'description' => 'Add client-level roles to the group role mapping',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -1032,7 +1032,7 @@ return array(
         ),
 
         'getGroupClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
             'description' => 'Get client-level role mappings for the group, and the app',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1058,7 +1058,7 @@ return array(
         ),
 
         'deleteGroupClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}',
             'description' => 'Delete client-level roles from group role mapping',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -1092,7 +1092,7 @@ return array(
         ),
 
         'getAvailableGroupClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}/available',
+            'uri' => 'admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}/available',
             'description' => 'Get available client-level roles that can be mapped to the group',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1118,7 +1118,7 @@ return array(
         ),
 
         'getGroupClientRoleMappingsWithComposite' => array(
-            'uri' => 'auth/admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}/composite',
+            'uri' => 'admin/realms/{realm}/groups/{id}/role-mappings/clients/{client}/composite',
             'description' => 'Get effective client-level role mappings This recurses any composite roles for groups',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1144,7 +1144,7 @@ return array(
         ),
 
         'addUserClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
             'description' => 'Add client-level roles to the user role mapping ',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -1178,7 +1178,7 @@ return array(
         ),
 
         'getUserClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
             'description' => 'Get client-level role mappings for the user, and the app',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1204,7 +1204,7 @@ return array(
         ),
 
         'deleteUserClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
+            'uri' => 'admin/realms/{realm}/users/{id}/role-mappings/clients/{client}',
             'description' => 'Delete client-level roles from user role mapping',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -1238,7 +1238,7 @@ return array(
         ),
 
         'getAvailableUserClientRoleMappings' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/role-mappings/clients/{client}/available',
+            'uri' => 'admin/realms/{realm}/users/{id}/role-mappings/clients/{client}/available',
             'description' => 'Get available client-level roles that can be mapped to the user',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1264,7 +1264,7 @@ return array(
         ),
 
         'getUserClientRoleMappingsWithComposite' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/role-mappings/clients/{client}/composite',
+            'uri' => 'admin/realms/{realm}/users/{id}/role-mappings/clients/{client}/composite',
             'description' => 'Get effective client-level role mappings This recurses any composite roles for users',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1292,7 +1292,7 @@ return array(
         // Client Scopes
 
         'createClientScope' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-scopes',
+            'uri' => 'admin/realms/{realm}/client-scopes',
             'description' => 'Create a new client scope Client Scope’s name must be unique!',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -1306,7 +1306,7 @@ return array(
         ),
 
         'getClientScopes' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-scopes',
+            'uri' => 'admin/realms/{realm}/client-scopes',
             'description' => 'Get client scopes belonging to the realm Returns a list of client scopes belonging to the realm',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1320,7 +1320,7 @@ return array(
         ),
 
         'getClientScope' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-scopes/{id}',
+            'uri' => 'admin/realms/{realm}/client-scopes/{id}',
             'description' => 'Get representation of the client scope',
             'httpMethod' => 'GET',
             'parameters' => array(
@@ -1340,7 +1340,7 @@ return array(
         ),
 
         'updateClientScope' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-scopes/{id}',
+            'uri' => 'admin/realms/{realm}/client-scopes/{id}',
             'description' => 'Update the client scope',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -1360,7 +1360,7 @@ return array(
         ),
 
         'deleteClientScope' => array(
-            'uri' => 'auth/admin/realms/{realm}/client-scopes/{id}',
+            'uri' => 'admin/realms/{realm}/client-scopes/{id}',
             'description' => 'Delete the client scope',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -5011,7 +5011,7 @@ return array(
         // Users
 
         'createUser' => array(
-            'uri' => 'auth/admin/realms/{realm}/users',
+            'uri' => 'admin/realms/{realm}/users',
             'description' => 'Create a new user Username must be unique.',
             'httpMethod' => 'POST',
             'parameters' => array(
@@ -5155,7 +5155,7 @@ return array(
         ),
 
         'updateUser' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}',
+            'uri' => 'admin/realms/{realm}/users/{id}',
             'description' => 'Update a user (Username must be unique)',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -5175,7 +5175,7 @@ return array(
         ),
 
         'updatePartialUser' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}',
+            'uri' => 'admin/realms/{realm}/users/{id}',
             'description' => 'Update a user (Username must be unique)',
             'httpMethod' => 'PATCH',
             'parameters' => array(
@@ -5195,7 +5195,7 @@ return array(
         ),
 
         'deleteUser' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}',
+            'uri' => 'admin/realms/{realm}/users/{id}',
             'description' => 'Delete a user',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -5215,7 +5215,7 @@ return array(
         ),
 
         'executeActionsEmail' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/execute-actions-email',
+            'uri' => 'admin/realms/{realm}/users/{id}/execute-actions-email',
             'description' => 'Send a update account email to the user An email contains a link the user can click to perform a set of required actions.',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -5258,7 +5258,7 @@ return array(
         ),
         
         'sendVerifyEmail' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/send-verify-email',
+            'uri' => 'admin/realms/{realm}/users/{id}/send-verify-email',
             'description' => 'Send an email-verification email to the user An email contains a link the user can click to verify their email address.',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -5290,7 +5290,7 @@ return array(
         ),
 
         'addUserToGroup' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/groups/{groupId}',
+            'uri' => 'admin/realms/{realm}/users/{id}/groups/{groupId}',
             'description' => 'Assign a specific user to a specific group',
             'httpMethod' => 'PUT',
             'parameters' => array(
@@ -5316,7 +5316,7 @@ return array(
         ),
 
         'deleteUserFromGroup' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/groups/{groupId}',
+            'uri' => 'admin/realms/{realm}/users/{id}/groups/{groupId}',
             'description' => 'Remove a specific user from a specific group',
             'httpMethod' => 'DELETE',
             'parameters' => array(
@@ -5342,7 +5342,7 @@ return array(
         ),
 
         'resetUserPassword' => array(
-            'uri' => 'auth/admin/realms/{realm}/users/{id}/reset-password',
+            'uri' => 'admin/realms/{realm}/users/{id}/reset-password',
             'description' => 'Set up a new password for the user',
             'httpMethod' => 'PUT',
             'parameters' => array(
